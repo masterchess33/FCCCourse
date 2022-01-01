@@ -1,3 +1,3 @@
 # Projecto Practica de Free code camp
 
-Ademas contiene otros projectos de practica en c#.
+Projecto realizado durante el curso de net 5 realizado por FCC en Youtube.
