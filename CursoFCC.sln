@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalogo", "Catalogo\Catalogo.csproj", "{5ECE52AD-F0E9-46E1-A097-2BF806F0FD07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JuegoAjedrez", "JuegoAjedrez\JuegoAjedrez.csproj", "{1207B844-94D1-40C5-B6D1-0264B89F9DEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{5ECE52AD-F0E9-46E1-A097-2BF806F0FD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECE52AD-F0E9-46E1-A097-2BF806F0FD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECE52AD-F0E9-46E1-A097-2BF806F0FD07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1207B844-94D1-40C5-B6D1-0264B89F9DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1207B844-94D1-40C5-B6D1-0264B89F9DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1207B844-94D1-40C5-B6D1-0264B89F9DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1207B844-94D1-40C5-B6D1-0264B89F9DEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
