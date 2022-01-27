@@ -1,0 +1,59 @@
+﻿@using System.Reflection
+@typeparam TItem
+
+@if (_memberInfos != null || _memberInfos.Length > 0)
+{
+    <table class="table is-striped is-hoverable">
+        <thead>
+        <tr>
+            @foreach (var member in _memberInfos)
+            {
+                @if (member.MemberType == MemberTypes.Property)
+                {
+                    <th>
+                        @member.Name
+                    </th>
+                }
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in this.Items)
+        {
+            <tr>
+                @foreach (var member in _memberInfos)
+                {
+                    @if (member.MemberType == MemberTypes.Property)
+                    {
+                        <td>
+                            @item.GetType().GetProperty(member.Name).GetValue(item)
+                        </td>
+                    }
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private MemberInfo[] _memberInfos;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (Items != null || Items.Count > 0)
+        {
+            Type typeItem = this.Items[0].GetType();
+            _memberInfos = typeItem.GetMembers();
+        }
+    }
+
+    [Parameter]
+    public List<TItem> Items { get; set; }
+    
+    [Parameter]
+    public string ColumsToExcludeCsv { get; set; }
+}

@@ -1,0 +1,112 @@
+﻿@page "/renfrag"
+<h4>Render Fragment</h4>
+
+<br/>
+<br/>
+
+<FieldComponent Label="Name">
+    <Control>
+        <input class="input" type="email" placeholder="Recipient email"/>
+    </Control>
+</FieldComponent>
+
+<FieldComponent Label="Title">
+    <Control>
+        <input class="input" type="email" placeholder="Recipient email"/>
+    </Control>
+</FieldComponent>
+
+<FieldComponent Label="Deparment">
+    <Control>
+        <input class="input" type="email" placeholder="Recipient email"/>
+    </Control>
+</FieldComponent>
+<hr/>
+<br/>
+
+<h4>Generic Type Items List</h4>
+
+<GridAutoComponent Items="_employees">
+
+</GridAutoComponent>
+<hr/>
+<br/>
+
+<h4>Generic Type Render Fragment</h4>
+
+<RepeaterComponent Items="_customers" @ref="repeater">
+    <Header>
+        <h2>Customers</h2>
+    </Header>
+
+    <Row Context="customer">
+        <div>
+            <b>@customer.CompanyName</b>
+            &nbsp;
+            <button class="btn" @onclick="() => { EditCustomer(customer); EditCustomer(customer);}">Edit</button>
+        </div>
+        <div class="ms-5">@customer.ContactName</div>
+        <div class="ms-5">@customer.PhoneNumber</div>
+        <br/>
+    </Row>
+    <EditTemplate Context="currentCustomer">
+        <div>
+            <text>Company Name:</text><input class="form-control" @bind="currentCustomer.CompanyName"/>
+        </div>
+        <div>
+            <text>Contact Name:</text><input class="form-control" @bind="currentCustomer.ContactName"/>
+        </div>
+        <div>
+            <text>Phone Number:</text><input class="form-control" @bind="currentCustomer.PhoneNumber"/>
+        </div>
+    </EditTemplate>
+</RepeaterComponent>
+
+@code {
+    private List<Employee> _employees;
+    private List<Customer> _customers;
+    private RepeaterComponent<Customer> repeater;
+    private Customer currentCustomer;
+
+    private void EditCustomer(Customer customer)
+    {
+        repeater.ItemToEdit = customer;
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _employees = new List<Employee>();
+
+        _employees.AddRange(new Employee[3]
+        {
+            new Employee {Id = 1, Name = "John Doe", Title = "Developer", Deparment = "Dev"},
+            new Employee {Id = 2, Name = "Jane Doe", Title = "Developer", Deparment = "Dev"},
+            new Employee {Id = 3, Name = "Jeff Thomas", Title = "Developer", Deparment = "Dev"}
+        });
+
+        _customers = new List<Customer>();
+        _customers.AddRange(new[]
+        {
+            new Customer {CompanyName = "ABC Company", ContactName = "Frank Liu", PhoneNumber = "111"},
+            new Customer {CompanyName = "DEF Company", ContactName = "Thomas Train", PhoneNumber = "222"},
+            new Customer {CompanyName = "GHI Company", ContactName = "John Doe", PhoneNumber = "333"}
+        });
+    }
+
+    public class Employee
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Title { get; set; }
+        public string Deparment { get; set; }
+    }
+
+    public class Customer
+    {
+        public string CompanyName { get; set; }
+        public string ContactName { get; set; }
+        public string PhoneNumber { get; set; }
+    }
+
+}

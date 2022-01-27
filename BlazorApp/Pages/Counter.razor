@@ -1,0 +1,37 @@
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<br/>
+<CascadingValue Name="Counter" Value="@_currentCount">
+    <CascadingValue Name="TitleColor" Value="@("blue")" IsFixed="true">
+        <Component1></Component1>
+    </CascadingValue>
+</CascadingValue>
+<br/>
+<br/>
+<button class="btn btn-primary" @onclick="(() => { 
+child.Show();
+})">Show Child Component</button>
+<ChildComponent @ref="child"></ChildComponent>
+
+
+@code {
+    [Parameter]
+    public EventCallback<int> SetCurrentCount { get; set; }
+
+    private ChildComponent child;
+    
+    private int _currentCount;
+    
+
+    private void IncrementCount()
+    {
+        _currentCount++;
+        SetCurrentCount.InvokeAsync(_currentCount);
+    }
+
+}
